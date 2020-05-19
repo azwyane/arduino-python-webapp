@@ -23,9 +23,19 @@
 {% if new_data %}
 <div class="alert alert-success" role="alert">NEW NOTIFICATION ARRIVED</div>
 <div class="alert alert-dark" role="alert">{{length}} new data recorded</div>
-{% for i in new_data %}	
-<p>{{i}}</p>
+<div class="row">
+  
+{% for i in new_data %}
+<div class="card border-success mb-3 card w-75" style="max-width: 18rem;">
+  <div class="card-header bg-transparent border-success">DAY: {{i["Day"]}}</div>
+  <div class="card-body text-success">
+    <h5 class="card-title">{{i["Tempt"]}} (degree Celcius)</h5>
+  </div>
+  <div class="card-footer bg-transparent border-success">TIME: {{i["Time"]}}</div>
+</div>
 {% endfor %}
+</div>
+</div>
 {% else %}
 <div class="alert alert-dark" role="alert">You have viewed all data</div>
 <p>If you want to view all recorded data then</p>

@@ -22,9 +22,19 @@
 
 	<div class="container">
 	    <p>Total data recorded:{{length}}</p>
+	    <div class="row">
+  <!--div class="col-sm-6"-->
 		{% for i in api %}
-		<p><strong>{{i}}</strong></p>
+		<div class="card border-success mb-3 card w-75" style="max-width: 18rem;">
+  <div class="card-header bg-transparent border-success">DAY: {{i["Day"]}}</div>
+  <div class="card-body text-success">
+    <h5 class="card-title">{{i["Tempt"]}} (degree Celcius)</h5>
+  </div>
+  <div class="card-footer bg-transparent border-success">TIME: {{i["Time"]}}</div>
+</div>
 		{% endfor %}
+				</div>
+  </div>
 		</div>
   </div>
 </div>

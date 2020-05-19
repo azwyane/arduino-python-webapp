@@ -7,6 +7,7 @@ import json
 delay=27 #delay applied considering requests delay 
 
 URL="https://arduino-36d7e.firebaseio.com"
+#URL="https://arduino-c666e.firebaseio.com"   
 
 data_to_push=deque([]) #made a deque object for future extension to run request independently
 #ser = serial.Serial('/dev/ttyUSB0',9600,timeout=0) #can also be '/dev/ttyACM0' check your arduino serial port address
