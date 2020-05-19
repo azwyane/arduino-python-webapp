@@ -8,6 +8,7 @@ api=Api(app)
 
 # change this url to your firebase url
 database_url="https://arduino-36d7e.firebaseio.com"    
+#database_url="https://arduino-c666e.firebaseio.com"    
 
 def read_sheets_api():
     '''
@@ -53,7 +54,7 @@ def home():
     where user can see the unseen and unverified data.
     '''
     new_data=read_sheets_notification()
-    return render_template("home.html",new_data=newdata)
+    return render_template("home.html",new_data=new_data,length=len(new_data))
    
     
 @app.route("/datarecorded")
@@ -64,7 +65,7 @@ def data_recorded():
     saved in the database.
     '''
     total_data_in=read_sheets_api()
-    return render_template("datarecorded.html",api=total_data_in)
+    return render_template("datarecorded.html",api=total_data_in,length=len(total_data_in))
     
 @app.errorhandler(404)
 def page_not_found(error):

@@ -4,12 +4,32 @@
 {% endblock %}
 
 {% block content %}	
-	   <p> <a href="{{ url_for('home') }}">HOME</a> </p>
-	   <p> <a href="http://127.0.0.1:5000/api/data">API</p>
-	<div>
+	<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="{{ url_for('data_recorded') }}">Datastore</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://127.0.0.1:5000/api/data">Api</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+
+	<div class="container">
+	    <p>Total data recorded:{{length}}</p>
 		{% for i in api %}
 		<p><strong>{{i}}</strong></p>
 		{% endfor %}
 		</div>
+  </div>
+</div>
+
+
+	  
 {% endblock %}		
 
