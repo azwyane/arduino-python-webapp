@@ -14,7 +14,7 @@
         <a class="nav-link" href="{{ url_for('data_recorded') }}">Datastore</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="http://127.0.0.1:5000/api/data">Api</a>
+        <a class="nav-link" href="{{ url_for('data_api') }}">Api</a>
       </li>
     </ul>
   </div>
@@ -26,13 +26,25 @@
 <div class="row">
   
 {% for i in new_data %}
+{% if (20 <= (i["Tempt"])|int <= 45) %} 
+<div class="card border-danger mb-3 card w-75" style="max-width: 18rem;">
+  <div class="card-header bg-transparent border-danger">DAY: {{i["Day"]}}</div>
+  <div class="card-body text-danger">
+    <h5 class="card-title">{{i["Tempt"]}} (degree Celsius)</h5>
+  </div>
+  <div class="card-footer bg-transparent border-danger">TIME: {{i["Time"]}}</div>
+</div>
+
+
+{% else %}
 <div class="card border-success mb-3 card w-75" style="max-width: 18rem;">
   <div class="card-header bg-transparent border-success">DAY: {{i["Day"]}}</div>
   <div class="card-body text-success">
-    <h5 class="card-title">{{i["Tempt"]}} (degree Celcius)</h5>
+    <h5 class="card-title">{{i["Tempt"]}} (degree Celsius)</h5>
   </div>
   <div class="card-footer bg-transparent border-success">TIME: {{i["Time"]}}</div>
 </div>
+{% endif %}
 {% endfor %}
 </div>
 </div>
