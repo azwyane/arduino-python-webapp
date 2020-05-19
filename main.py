@@ -10,6 +10,10 @@ api=Api(app)
 database_url="https://arduino-36d7e.firebaseio.com"    
 
 def read_sheets_api():
+    '''
+    This function makes get request to the firebase
+    in a json format.
+    '''
     get_data_from_database=requests.get(database_url+"/arduinodata.json")
     data_into_dict=get_data_from_database.json()
     api_format=[values for keys,values in data_into_dict.items()]
@@ -44,20 +48,36 @@ def read_sheets_notification():
 
 @app.route("/")
 def home():
+    '''
+    It is the home of the webapp
+    where user can see the unseen and unverified data.
+    '''
     new_data=read_sheets_notification()
     return render_template("home.html",new_data=newdata)
    
     
 @app.route("/datarecorded")
 def data_recorded():
+    '''
+    It is the data store display function which 
+    display all data pushed from arduino which is 
+    saved in the database.
+    '''
     total_data_in=read_sheets_api()
     return render_template("datarecorded.html",api=total_data_in)
     
 @app.errorhandler(404)
 def page_not_found(error):
+    '''
+    Error function
+    '''
     return render_template('page_not_found.html'), 404    
     
 if __name__=="__main__":
+    '''
+    While deploying into the main server
+    this may not be required.
+    '''
     app.run(debug=True)  #set to False when deploying
 
 
