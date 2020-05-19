@@ -3,18 +3,13 @@
 	<head>
 		<title>Arduino DataStore</title>
 	</head>
-	<style>
-	 .frame{
-	 width=600px;
-	 height=600px;
-	 border=none;
-	 overflow=hidden;
-	 }
-	</style>
+
 	<body>
 		<div><strong>Arduino Reading's</strong></div>
 		<div>
-		<iframe  class="frame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQujRCxtaNiPA3VT_CPtdeydwKj4sylSNCpRLIoWWijco_QN-pL0GbD9A9MT-W-g-qRO-8vpcWEN2zF/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" ></iframe>
+		{{% for i in api %}}
+		<p><strong>i</strong></p>
+		{{% end for %}}
 		</div>
 	</body>
 </html>
