@@ -48,7 +48,7 @@ def home():
     return render_template("home.html",new_data=newdata)
    
     
-@app.route("/datarecorded",methods=['GET','POST'])
+@app.route("/datarecorded")
 def data_recorded():
     total_data_in=read_sheets_api()
     return render_template("datarecorded.html",api=total_data_in)
