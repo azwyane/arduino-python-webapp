@@ -6,7 +6,14 @@
 {% block content %}
 <p> <a href="{{ url_for('data_recorded') }}">DATASTORE</a> </p>
  <p> <a href="http://127.0.0.1:5000/api/data">API</p>
+ 
+{% if new_data %}
 {% for i in new_data %}	
 <p>{{i}}</p>
 {% endfor %}
+{% else %}
+<p>You have viewed all data<p>
+<p>If you want to view all recorded data then</p>
+<p>move to <a href="{{ url_for('data_recorded') }}">DATASTORE</a> </p>
+{% endif %}
 {% endblock %}	

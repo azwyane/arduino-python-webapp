@@ -37,9 +37,9 @@ def read_sheets_notification():
             f.seek(0)
             f.write(str(len(data_into_dict)))
             f.truncate()
-            return refined_data[read_index:len(data_into_dict), : ]
+            return refined_data[read_index:len(data_into_dict)]
         else:
-            return "No new data"
+            return []
             
 
 @app.route("/")
@@ -50,7 +50,8 @@ def home():
     
 @app.route("/datarecorded",methods=['GET','POST'])
 def data_recorded():
-    return render_template("datarecorded.html",api=read_sheets_api())
+    total_data_in=read_sheets_api()
+    return render_template("datarecorded.html",api=total_data_in)
     
 @app.errorhandler(404)
 def page_not_found(error):
