@@ -3,7 +3,5 @@
 __pycache__
 venv
 *.swp
-serialtest.py
-test.py
 firebase
 
