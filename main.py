@@ -6,14 +6,14 @@ import json
 app=Flask(__name__)
 api=Api(app)
 
-# change this url to the sheet csv url
+# change this url to your firebase url
 database_url="https://arduino-36d7e.firebaseio.com"    
 
 def read_sheets_api():
     get_data_from_database=requests.get(database_url+"/arduinodata.json")
     data_into_dict=get_data_from_database.json()
     api_format=[values for keys,values in data_into_dict.items()]
-    return api_format
+    return api_format[::-1]
      
 class data_api(Resource):
     def get(self):
@@ -37,18 +37,18 @@ def read_sheets_notification():
             f.seek(0)
             f.write(str(len(data_into_dict)))
             f.truncate()
-            return str(refined_data[read_index:len(data_into_dict), : ])
+            return refined_data[read_index:len(data_into_dict), : ]
         else:
             return "No new data"
             
 
 @app.route("/")
 def home():
+    new_data=read_sheets_notification()
+    return render_template("home.html",new_data=newdata)
    
-    #return render_template("home.html",name="hey")
-    return read_sheets_notification()
     
-@app.route("/datarecorded")
+@app.route("/datarecorded",methods=['GET','POST'])
 def data_recorded():
     return render_template("datarecorded.html",api=read_sheets_api())
     
@@ -57,6 +57,6 @@ def page_not_found(error):
     return render_template('page_not_found.html'), 404    
     
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=True)  #set to False when deploying
 
 

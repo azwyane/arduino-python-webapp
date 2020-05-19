@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Arduino</title>
-	</head>
-	<body>
-		<div>{{name}}</div>
-	</body>
-</html>
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}Home{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<p> <a href="{{ url_for('data_recorded') }}">DATASTORE</a> </p>
+ <p> <a href="http://127.0.0.1:5000/api/data">API</p>
+{% for i in new_data %}	
+<p>{{i}}</p>
+{% endfor %}
+{% endblock %}	
