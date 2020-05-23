@@ -5,7 +5,7 @@ import time
 import json
 import winsound
 
-delay=30 #delay applied considering requests delay 
+delay=25 #delay applied considering requests delay 
 frequency = 2500  # 2500 Hertz
 duration = 3000   # 3 sec
 
@@ -45,7 +45,7 @@ while True:
   except IOError:
     print('Got some IO error')
   
-  time.sleep(delay)
+
 
 
 
