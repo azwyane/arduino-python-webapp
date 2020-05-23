@@ -20,7 +20,7 @@ ser.flushInput()
 def push_arduino_data_to_database():
     while data_to_push:
         data=data_to_push.popleft()
-        res=requests.get(URL+"/arduinodata.json", data=json.dumps(data))
+        res=requests.post(URL+"/arduinodata.json", data=json.dumps(data))
         if (res.status_code==200):
             print("Data pushed successfully")
         else:
