@@ -64,6 +64,9 @@ while True:
                 #         )
 
                 # SendGridAPIClient("<your_api_key>").send(message)
+        
+        else:
+            critical_tempt_count = 0
             
         time.sleep(delay)
     
