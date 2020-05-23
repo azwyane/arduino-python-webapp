@@ -25,7 +25,7 @@
 	    <div class="row">
   <!--div class="col-sm-6"-->
 		{% for i in api %}
-		{% if (20 <= (i["Tempt"])|int <= 45) %} 
+		{% if (20 <= (i["Tempt"])|int and i["Day"][3:-5]|int <= 7) %}
 <div class="card border-danger mb-3 card w-75" style="max-width: 18rem;">
   <div class="card-header bg-transparent border-danger">DAY: {{i["Day"]}}</div>
   <div class="card-body text-danger">
@@ -34,6 +34,14 @@
   <div class="card-footer bg-transparent border-danger">TIME: {{i["Time"]}}</div>
 </div>
 
+{% elif (15 <= (i["Tempt"])|int and i["Day"][3:-5]|int > 7) %}
+<div class="card border-danger mb-3 card w-75" style="max-width: 18rem;">
+  <div class="card-header bg-transparent border-danger">DAY: {{i["Day"]}}</div>
+  <div class="card-body text-danger">
+    <h5 class="card-title">{{i["Tempt"]}} (degree Celsius)</h5>
+  </div>
+  <div class="card-footer bg-transparent border-danger">TIME: {{i["Time"]}}</div>
+</div>
 
 {% else %}
 		<div class="card border-success mb-3 card w-75" style="max-width: 18rem;">
