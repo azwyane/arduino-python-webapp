@@ -38,7 +38,7 @@ while True:
         Day,Time = time.strftime('%d/%m/%Y'),time.strftime('%H:%M:%S')
         data_to_push.append({"Day":Day,"Time":Time,"Tempt":celsius_tempt})                   # here also
         push_arduino_data_to_database()
-        if (20 <= celsius_tempt and Day[3:-5] <= 7) or (15 <= celsius_tempt and Day[3:-5] > 7):
+        if (20 <= int(celsius_tempt) and int(Day[3:-5]) <= 7) or (15 <= int(celsius_tempt) and int(Day[3:-5]) > 7):
             winsound.Beep(frequency, duration)
         time.sleep(delay)
     

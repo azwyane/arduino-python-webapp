@@ -42,7 +42,7 @@ def read_sheets_notification():
             f.seek(0)
             f.write(str(len(data_into_dict)))
             f.truncate()
-            return refined_data[read_index:len(data_into_dict)]
+            return refined_data[read_index:len(data_into_dict)][::-1]
         else:
             return []
             
