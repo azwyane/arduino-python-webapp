@@ -3,8 +3,11 @@ import serial
 from collections import deque
 import time 
 import json
+import winsound
 
 delay=30 #delay applied considering requests delay 
+frequency = 2500  # 2500 Hertz
+duration = 3000   # 3 sec
 
 URL="https://arduino-36d7e.firebaseio.com"
 #URL="https://arduino-c666e.firebaseio.com"   
@@ -30,10 +33,13 @@ while True:
   try:
             
     celsius_tempt_bytes= ser.readline()    #edit here as per arguments
-    celsius_tempt = celsius_tempt_bytes[0:len(celsius_tempt_bytes)-2].decode("utf-8")
+    celsius_tempt = celsius_tempt_bytes[0:-2].decode("utf-8")
     if celsius_tempt: 
-        data_to_push.append({"Day":time.strftime('%d/%m/%Y'),"Time":time.strftime('%H:%M:%S'),"Tempt":celsius_tempt})                   # here also
+        Day,Time = time.strftime('%d/%m/%Y'),time.strftime('%H:%M:%S')
+        data_to_push.append({"Day":Day,"Time":Time,"Tempt":celsius_tempt})                   # here also
         push_arduino_data_to_database()
+        if (20 <= celsius_tempt and Day[3:-5] <= 7) or (15 <= celsius_tempt and Day[3:-5] > 7):
+            winsound.Beep(frequency, duration)
         time.sleep(delay)
     
   except IOError:
