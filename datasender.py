@@ -12,6 +12,7 @@ from sendgrid.helpers.mail import Mail
 delay=25 #delay applied considering requests delay 
 frequency = 2500  # 2500 Hertz
 duration = 3000   # 3 sec
+critical_tempt_count = 0 #send email in particular interval
 
 URL="https://arduino-36d7e.firebaseio.com"
 #URL="https://arduino-c666e.firebaseio.com"   
@@ -44,9 +45,11 @@ while True:
         push_arduino_data_to_database()
         if (20 <= float(celsius_tempt) and int(Day[3:-5]) <= 7) or (15 <= float(celsius_tempt) and int(Day[3:-5]) > 7):
             winsound.Beep(frequency, duration)
-            
-            # send email about critical temperature
-            message = Mail(
+            critical_tempt_count+=1
+
+            if (critical_tempt_count % 4 == 0):      #send email in every delay*4 sec
+                # send email about critical temperature 
+                message = Mail(
                     from_email = '<your_email>',
                     to_emails = ['<receipient_email>',],
                     subject='Critical Temperature Alert',
@@ -60,7 +63,7 @@ while True:
                     '''
                     )
 
-            SendGridAPIClient("<your_api_key>").send(message)
+                SendGridAPIClient("<your_api_key>").send(message)
             
         time.sleep(delay)
     

@@ -3,15 +3,17 @@ from collections import deque
 import time 
 import json
 #import winsound
-import os
+
 
 # email service
+'''
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-
+'''
 delay=5 #delay applied considering requests delay 
 frequency = 2500  # 2500 Hertz
 duration = 3000   # 3 sec
+critical_tempt_count = 0
 
 URL="https://arduino-36d7e.firebaseio.com/"
 
@@ -41,22 +43,27 @@ while True:
         if (20 <= float(celsius_tempt) and int(Day[3:-5]) <= 7) or (15 <= float(celsius_tempt) and int(Day[3:-5]) > 7):
             #winsound.Beep(frequency, duration)
             print("beep")
-             # send email about critical temperature
-            message = Mail(
-                    from_email = '<your_email>',
-                    to_emails = ['<recipient_email>',],
-                    subject='Critical Temperature Alert',
-                    html_content=f'''
-                    <strong>Arduino Temperature Alert</strong>
-                    <ul>
-                    <li>DAY: {Day}</li>
-                    <li>TIME: {Time}</li>
-                    <li>TEMPERATURE: {celsius_tempt}</li>
-                    </ul>
-                    '''
-                    )
+            critical_tempt_count+=1
 
-            SendGridAPIClient("<your_api_key>").send(message)
+            if (critical_tempt_count % 4 == 0):  #send email in every delay*4 sec
+                # send email about critical temperature
+
+                print("email sent")
+                # message = Mail(
+                #         from_email = '<your_email>',
+                #         to_emails = ['<recipient_email>',],
+                #         subject='Critical Temperature Alert',
+                #         html_content=f'''
+                #         <strong>Arduino Temperature Alert</strong>
+                #         <ul>
+                #         <li>DAY: {Day}</li>
+                #         <li>TIME: {Time}</li>
+                #         <li>TEMPERATURE: {celsius_tempt}</li>
+                #         </ul>
+                #         '''
+                #         )
+
+                # SendGridAPIClient("<your_api_key>").send(message)
             
         time.sleep(delay)
     
