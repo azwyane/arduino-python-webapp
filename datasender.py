@@ -14,12 +14,11 @@ frequency = 2500  # 2500 Hertz
 duration = 3000   # 3 sec
 critical_tempt_count = 0 #send email in particular interval
 
-URL="https://arduino-36d7e.firebaseio.com"
-#URL="https://arduino-c666e.firebaseio.com"   
+URL="<your_firebase_url>" #replace with your firebase url 
+
 
 data_to_push=deque([]) #made a deque object for future extension to run request independently
-#ser = serial.Serial('/dev/ttyUSB0',9600,timeout=0) #can also be '/dev/ttyACM0' check your arduino serial port address
-ser = serial.Serial('COM7', 9600, timeout=0)
+ser = serial.Serial('COM7', 9600, timeout=0)  #can also be '/dev/ttyACM0' check your arduino serial port address
 ser.flushInput()
 
 def push_arduino_data_to_database():

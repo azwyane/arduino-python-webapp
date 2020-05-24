@@ -7,8 +7,8 @@ app=Flask(__name__)
 api=Api(app)
 
 # change this url to your firebase url
-database_url="https://arduino-36d7e.firebaseio.com"    
-#database_url="https://arduino-c666e.firebaseio.com"    
+database_url="<your_firebase_url>"    
+ 
 
 def read_sheets_api():
     '''

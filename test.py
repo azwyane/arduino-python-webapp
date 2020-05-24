@@ -2,20 +2,20 @@ import requests
 from collections import deque
 import time 
 import json
-#import winsound
+#import winsound 
 
 
 # email service
-'''
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
-'''
+
+#from sendgrid import SendGridAPIClient #uncomment this 
+#from sendgrid.helpers.mail import Mail  #uncomment this
+
 delay=5 #delay applied considering requests delay 
 frequency = 2500  # 2500 Hertz
 duration = 3000   # 3 sec
 critical_tempt_count = 0
 
-URL="https://arduino-36d7e.firebaseio.com/"
+URL="<your_firebase_url>"
 
 data_to_push=deque([])
 
@@ -51,7 +51,7 @@ while True:
                 print("email sent")
                 # message = Mail(
                 #         from_email = '<your_email>',
-                #         to_emails = ['<recipient_email>',],
+                #         to_emails = ['<receipient_email>',],
                 #         subject='Critical Temperature Alert',
                 #         html_content=f'''
                 #         <strong>Arduino Temperature Alert</strong>
